@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<p><a href="./">index</a></p>
+<p><a href="./helloworld">helloworld</a></p>
+<p><a href="./newuser">newuser</a></p>
+<p><a href="./userlist">userlist</a></p>
+<h1><%= title %></h1>
+<% userlist.forEach(function (user) { %>
+<p>用户名：<%= user.username %>&nbsp;邮箱：<%= user.email %>&nbsp;密码:<%= user.password %></p>
+<% }) %>
+</body>
+</html>
