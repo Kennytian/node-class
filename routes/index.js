@@ -1,6 +1,6 @@
 var express = require('express');
 var utility = require('utility');
-var superagent = require('superagent');
+var superAgent = require('superagent');
 var cheerio = require('cheerio');
 
 var router = express.Router();
@@ -42,38 +42,53 @@ router.get('/updateuser', function (req, res) {
     if (items && items[0]) {
       res.render('updateuser', {
         title: 'Update User',
+        id: id,
         username: items[0].username,
-        useremail: items[0].email,
-        password: items[0].password
+        useremail: items[0].email
       });
     }
   });
+});
 
+router.post('/updateuser', function (req, res) {
+  var userName = req.body.username;
+  if (!userName) {
+    res.send("用户名不能为空！");
+    return;
+  }
 
-  // 后更新
+  var userEmail = req.body.useremail;
+  if (!userEmail) {
+    res.send("用户邮箱不能为空！");
+    return;
+  }
 
-  // collection.update({'_id': id}, {'username': 'testuser1-u'});
-  // or
-  // collection.save
+  var objDocument = {
+    username: userName,
+    email: userEmail
+  };
 
+  var userPwd = req.body.userpwd;
+  if (userPwd) {
+    userPwd = utility.md5(userPwd);
+    objDocument.password = userPwd;
+  }
 
-  /*
-   * db.col.save({
-   "_id" : ObjectId("56064f89ade2f21f36b03136"),
-   "title" : "MongoDB",
-   "description" : "MongoDB 是一个 Nosql 数据库",
-   "by" : "Runoob",
-   "url" : "http://www.runoob.com",
-   "tags" : [
-   "mongodb",
-   "NoSQL"
-   ],
-   "likes" : 110
-   })
-   *
-   * */
+  var db = req.db;
+  var collection = db.get('usercollection');
 
-})
+  collection.update({_id: req.body.id}, objDocument, function (err, doc) {
+    if (err) {
+      // If it failed, return error
+      res.send("There was a problem adding the information to the database.");
+    } else {
+      // If it worked, set the header so the address bar doesn't still say /updateuser
+      res.location("userlist");
+      // And forward to success page
+      res.redirect("userlist");
+    }
+  });
+});
 
 router.post('/adduser', function (req, res) {
   var userName = req.body.username;
@@ -115,8 +130,25 @@ router.post('/adduser', function (req, res) {
   });
 })
 
+router.get('/removeuser',function (req,res) {
+  var id = req.query.id;
+  if (!(id && id.length > 20)) {
+    return;
+  }
+
+  var db = req.db;
+  var collection = db.get('usercollection');
+  collection.remove({"_id": id}, function (err, items) {
+    if (err) {
+      console.log(err)
+      return
+    }
+    res.redirect("userlist");
+  });
+});
+
 router.get('/spider', function (req, res, next) {
-  superagent.get('https://cnodejs.org/').end(function (err, sres) {
+  superAgent.get('https://cnodejs.org/').end(function (err, sres) {
     if (err) {
       return next(err);
     }

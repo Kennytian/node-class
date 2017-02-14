@@ -11,7 +11,7 @@
 <p><a href="./userlist">userlist</a></p>
 <h1><%= title %></h1>
 <% userlist.forEach(function (user) { %>
-<p>用户名：<%= user.username %>; 邮箱：<%= user.email %>; 密码:<%= user.password %>；<a href="./updateuser?id=<%=user._id%>">修改</a>; <a href="?<%=user._id%>">删除</a></p>
+<p>用户名：<%= user.username %>; 邮箱：<%= user.email %>; 密码:<%= user.password %>；<a href="./updateuser?id=<%=user._id%>">修改</a>; <a href="./removeuser?id=<%=user._id%>">删除</a></p>
 <% }) %>
 </body>
 </html>
