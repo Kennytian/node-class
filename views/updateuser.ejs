@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+</head>
+<body>
+<h1><%= title %></h1>
+<form name="adduser" method="post" action="">
+    <input name="username" type="text" placeholder="username" value="<%=username%>"/>&nbsp;
+    <input name="useremail" type="text" placeholder="useremail" value="<%=useremail%>"/>&nbsp;
+    <input name="userpwd" type="password" placeholder="password" value="<%=password%>"/>&nbsp;
+    <input type="submit" value="submit">
+</form>
+<p><a href="./helloworld">helloworld</a></p>
+<p><a href="./newuser">newuser</a></p>
+<p><a href="./userlist">userlist</a></p>
+</body>
+</html>
