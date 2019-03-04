@@ -741,6 +741,13 @@ has-unicode@^2.0.0:
   resolved "https://registry.yarnpkg.com/has-unicode/-/has-unicode-2.0.1.tgz#e0e6fe6a28cf51138855e086d1691e771de2a8b9"
   integrity sha1-4Ob+aijPUROIVeCG0Wkedx3iqLk=
 
+heapdump@^0.3.12:
+  version "0.3.12"
+  resolved "http://registry.npm.taobao.org/heapdump/download/heapdump-0.3.12.tgz#5623be7816a8a92ab2d42b1b422f9e829a58da89"
+  integrity sha1-ViO+eBaoqSqy1CsbQi+egppY2ok=
+  dependencies:
+    nan "^2.11.1"
+
 hosted-git-info@^2.1.4:
   version "2.7.1"
   resolved "https://registry.yarnpkg.com/hosted-git-info/-/hosted-git-info-2.7.1.tgz#97f236977bd6e125408930ff6de3eec6281ec047"
@@ -1233,7 +1240,7 @@ mz@^2.7.0:
     object-assign "^4.0.1"
     thenify-all "^1.0.0"
 
-nan@^2.10.0:
+nan@^2.10.0, nan@^2.11.1:
   version "2.12.1"
   resolved "http://registry.npm.taobao.org/nan/download/nan-2.12.1.tgz#7b1aa193e9aa86057e3c7bbd0ac448e770925552"
   integrity sha1-exqhk+mqhgV+PHu9CsRI53CSVVI=
